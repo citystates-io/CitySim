@@ -4,6 +4,19 @@ A simple boilerplate using Colyseus + PixiJS. It implements a simplistic version
 
 [View live demo](https://colyseus-pixijs-boilerplate.herokuapp.com)
 
+## Running on Gitpod.io
+
+### Setup
+```
+npm install -g heroku
+heroku login
+heroku git:remote -a citystates-io
+```
+### Pushing master branch to Heroku
+```
+git push heroku master
+```
+
 ## Running locally
 
 ```
