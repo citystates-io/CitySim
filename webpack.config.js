@@ -8,7 +8,7 @@ module.exports = function (options) {
     mode: process.env.NODE_ENV || "development",
     entry: [
       'webpack-hot-middleware/client?reload=true',
-      './src/client/index.ts'
+      './src/client/index.js'
     ],
     module: {
       rules: [

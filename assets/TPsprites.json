@@ -1,0 +1,2477 @@
+{
+	"textures": [
+		{
+			"image": "TPsprites.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 250,
+				"h": 641
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "RedApartment2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 6,
+						"h": 6
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 6,
+						"h": 6
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 6,
+						"h": 6
+					}
+				},
+				{
+					"filename": "pixel city_SignBase.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 8,
+						"h": 7
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 8,
+						"h": 7
+					},
+					"frame": {
+						"x": 6,
+						"y": 0,
+						"w": 8,
+						"h": 7
+					}
+				},
+				{
+					"filename": "pixel city_Car1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 10,
+						"h": 8
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 10,
+						"h": 8
+					},
+					"frame": {
+						"x": 14,
+						"y": 0,
+						"w": 10,
+						"h": 8
+					}
+				},
+				{
+					"filename": "Anchor.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 5,
+						"h": 9
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 5,
+						"h": 9
+					},
+					"frame": {
+						"x": 24,
+						"y": 0,
+						"w": 5,
+						"h": 9
+					}
+				},
+				{
+					"filename": "Van1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 12,
+						"h": 10
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 12,
+						"h": 10
+					},
+					"frame": {
+						"x": 29,
+						"y": 0,
+						"w": 12,
+						"h": 10
+					}
+				},
+				{
+					"filename": "Boat1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 5,
+						"h": 10
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 5,
+						"h": 10
+					},
+					"frame": {
+						"x": 41,
+						"y": 0,
+						"w": 5,
+						"h": 10
+					}
+				},
+				{
+					"filename": "Boat3.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 5,
+						"h": 10
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 5,
+						"h": 10
+					},
+					"frame": {
+						"x": 46,
+						"y": 0,
+						"w": 5,
+						"h": 10
+					}
+				},
+				{
+					"filename": "Boat2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 5,
+						"h": 10
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 5,
+						"h": 10
+					},
+					"frame": {
+						"x": 51,
+						"y": 0,
+						"w": 5,
+						"h": 10
+					}
+				},
+				{
+					"filename": "Boxes.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 17,
+						"h": 12
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 17,
+						"h": 12
+					},
+					"frame": {
+						"x": 56,
+						"y": 0,
+						"w": 17,
+						"h": 12
+					}
+				},
+				{
+					"filename": "pixel city_ContainerRed.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 14,
+						"h": 12
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 14,
+						"h": 12
+					},
+					"frame": {
+						"x": 73,
+						"y": 0,
+						"w": 14,
+						"h": 12
+					}
+				},
+				{
+					"filename": "pixel city_ContainerGreen.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 14,
+						"h": 12
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 14,
+						"h": 12
+					},
+					"frame": {
+						"x": 87,
+						"y": 0,
+						"w": 14,
+						"h": 12
+					}
+				},
+				{
+					"filename": "pixel city_ContainerBlue.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 14,
+						"h": 12
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 14,
+						"h": 12
+					},
+					"frame": {
+						"x": 101,
+						"y": 0,
+						"w": 14,
+						"h": 12
+					}
+				},
+				{
+					"filename": "pixel city_TruckCab.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 13,
+						"h": 14
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 13,
+						"h": 14
+					},
+					"frame": {
+						"x": 115,
+						"y": 0,
+						"w": 13,
+						"h": 14
+					}
+				},
+				{
+					"filename": "2Containers.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 20,
+						"h": 15
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 20,
+						"h": 15
+					},
+					"frame": {
+						"x": 128,
+						"y": 0,
+						"w": 20,
+						"h": 15
+					}
+				},
+				{
+					"filename": "pixel city_Truck2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 18,
+						"h": 15
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 18,
+						"h": 15
+					},
+					"frame": {
+						"x": 148,
+						"y": 0,
+						"w": 18,
+						"h": 15
+					}
+				},
+				{
+					"filename": "Airplane1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 22,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 22,
+						"h": 16
+					},
+					"frame": {
+						"x": 166,
+						"y": 0,
+						"w": 22,
+						"h": 16
+					}
+				},
+				{
+					"filename": "Pier2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 22,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 22,
+						"h": 16
+					},
+					"frame": {
+						"x": 188,
+						"y": 0,
+						"w": 22,
+						"h": 16
+					}
+				},
+				{
+					"filename": "Pier1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 22,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 22,
+						"h": 16
+					},
+					"frame": {
+						"x": 210,
+						"y": 0,
+						"w": 22,
+						"h": 16
+					}
+				},
+				{
+					"filename": "RotatingDish3.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 19,
+						"h": 18
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 19,
+						"h": 18
+					},
+					"frame": {
+						"x": 0,
+						"y": 16,
+						"w": 19,
+						"h": 18
+					}
+				},
+				{
+					"filename": "HighTech1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 23,
+						"h": 19
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 23,
+						"h": 19
+					},
+					"frame": {
+						"x": 19,
+						"y": 16,
+						"w": 23,
+						"h": 19
+					}
+				},
+				{
+					"filename": "pixel city_Sign.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 8,
+						"h": 19
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 8,
+						"h": 19
+					},
+					"frame": {
+						"x": 42,
+						"y": 16,
+						"w": 8,
+						"h": 19
+					}
+				},
+				{
+					"filename": "pixel city_Terrain5.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 32,
+						"h": 20
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 32,
+						"h": 20
+					},
+					"frame": {
+						"x": 50,
+						"y": 16,
+						"w": 32,
+						"h": 20
+					}
+				},
+				{
+					"filename": "pixel city_Terrain7.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 32,
+						"h": 20
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 32,
+						"h": 20
+					},
+					"frame": {
+						"x": 82,
+						"y": 16,
+						"w": 32,
+						"h": 20
+					}
+				},
+				{
+					"filename": "pixel city_Plaza1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 34,
+						"h": 21
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 34,
+						"h": 21
+					},
+					"frame": {
+						"x": 114,
+						"y": 16,
+						"w": 34,
+						"h": 21
+					}
+				},
+				{
+					"filename": "HarborPlatform2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 34,
+						"h": 21
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 34,
+						"h": 21
+					},
+					"frame": {
+						"x": 148,
+						"y": 16,
+						"w": 34,
+						"h": 21
+					}
+				},
+				{
+					"filename": "pixel city_Road.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 34,
+						"h": 21
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 34,
+						"h": 21
+					},
+					"frame": {
+						"x": 182,
+						"y": 16,
+						"w": 34,
+						"h": 21
+					}
+				},
+				{
+					"filename": "pixel city_Road1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 34,
+						"h": 21
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 34,
+						"h": 21
+					},
+					"frame": {
+						"x": 216,
+						"y": 16,
+						"w": 34,
+						"h": 21
+					}
+				},
+				{
+					"filename": "pixel city_Road2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 34,
+						"h": 21
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 34,
+						"h": 21
+					},
+					"frame": {
+						"x": 0,
+						"y": 37,
+						"w": 34,
+						"h": 21
+					}
+				},
+				{
+					"filename": "pixel city_RoadInt.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 34,
+						"h": 21
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 34,
+						"h": 21
+					},
+					"frame": {
+						"x": 34,
+						"y": 37,
+						"w": 34,
+						"h": 21
+					}
+				},
+				{
+					"filename": "RotatingDish2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 19,
+						"h": 21
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 19,
+						"h": 21
+					},
+					"frame": {
+						"x": 68,
+						"y": 37,
+						"w": 19,
+						"h": 21
+					}
+				},
+				{
+					"filename": "Water1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 34,
+						"h": 21
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 34,
+						"h": 21
+					},
+					"frame": {
+						"x": 87,
+						"y": 37,
+						"w": 34,
+						"h": 21
+					}
+				},
+				{
+					"filename": "pixel city_Terrain2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 34,
+						"h": 21
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 34,
+						"h": 21
+					},
+					"frame": {
+						"x": 121,
+						"y": 37,
+						"w": 34,
+						"h": 21
+					}
+				},
+				{
+					"filename": "pixel city_Terrain3.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 34,
+						"h": 21
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 34,
+						"h": 21
+					},
+					"frame": {
+						"x": 155,
+						"y": 37,
+						"w": 34,
+						"h": 21
+					}
+				},
+				{
+					"filename": "pixel city_Signpole.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 8,
+						"h": 21
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 8,
+						"h": 21
+					},
+					"frame": {
+						"x": 189,
+						"y": 37,
+						"w": 8,
+						"h": 21
+					}
+				},
+				{
+					"filename": "RotatingDish4.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 19,
+						"h": 21
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 19,
+						"h": 21
+					},
+					"frame": {
+						"x": 197,
+						"y": 37,
+						"w": 19,
+						"h": 21
+					}
+				},
+				{
+					"filename": "Runway1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 34,
+						"h": 21
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 34,
+						"h": 21
+					},
+					"frame": {
+						"x": 216,
+						"y": 37,
+						"w": 34,
+						"h": 21
+					}
+				},
+				{
+					"filename": "ContainerPlatform.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 34,
+						"h": 22
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 34,
+						"h": 22
+					},
+					"frame": {
+						"x": 0,
+						"y": 58,
+						"w": 34,
+						"h": 22
+					}
+				},
+				{
+					"filename": "RotatingDish1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 4,
+						"h": 22
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 4,
+						"h": 22
+					},
+					"frame": {
+						"x": 34,
+						"y": 58,
+						"w": 4,
+						"h": 22
+					}
+				},
+				{
+					"filename": "Garage1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 22,
+						"h": 22
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 22,
+						"h": 22
+					},
+					"frame": {
+						"x": 38,
+						"y": 58,
+						"w": 22,
+						"h": 22
+					}
+				},
+				{
+					"filename": "pixel city_TowerFloor5.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 34,
+						"h": 23
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 34,
+						"h": 23
+					},
+					"frame": {
+						"x": 60,
+						"y": 58,
+						"w": 34,
+						"h": 23
+					}
+				},
+				{
+					"filename": "pixel city_TowerFloor7.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 34,
+						"h": 23
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 34,
+						"h": 23
+					},
+					"frame": {
+						"x": 94,
+						"y": 58,
+						"w": 34,
+						"h": 23
+					}
+				},
+				{
+					"filename": "pixel city_TowerFloor6.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 34,
+						"h": 23
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 34,
+						"h": 23
+					},
+					"frame": {
+						"x": 128,
+						"y": 58,
+						"w": 34,
+						"h": 23
+					}
+				},
+				{
+					"filename": "pixel city_TowerFloor8.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 34,
+						"h": 23
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 34,
+						"h": 23
+					},
+					"frame": {
+						"x": 162,
+						"y": 58,
+						"w": 34,
+						"h": 23
+					}
+				},
+				{
+					"filename": "ContainersStacked.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 34,
+						"h": 23
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 34,
+						"h": 23
+					},
+					"frame": {
+						"x": 196,
+						"y": 58,
+						"w": 34,
+						"h": 23
+					}
+				},
+				{
+					"filename": "HarborPlatform.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 34,
+						"h": 23
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 34,
+						"h": 23
+					},
+					"frame": {
+						"x": 0,
+						"y": 81,
+						"w": 34,
+						"h": 23
+					}
+				},
+				{
+					"filename": "pixel city_TowerBase1x1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 34,
+						"h": 23
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 34,
+						"h": 23
+					},
+					"frame": {
+						"x": 34,
+						"y": 81,
+						"w": 34,
+						"h": 23
+					}
+				},
+				{
+					"filename": "pixel city_TowerFloor4.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 34,
+						"h": 23
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 34,
+						"h": 23
+					},
+					"frame": {
+						"x": 68,
+						"y": 81,
+						"w": 34,
+						"h": 23
+					}
+				},
+				{
+					"filename": "pixel city_TowerFloor3.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 34,
+						"h": 23
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 34,
+						"h": 23
+					},
+					"frame": {
+						"x": 102,
+						"y": 81,
+						"w": 34,
+						"h": 23
+					}
+				},
+				{
+					"filename": "FreightBoat.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 34,
+						"h": 24
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 34,
+						"h": 24
+					},
+					"frame": {
+						"x": 136,
+						"y": 81,
+						"w": 34,
+						"h": 24
+					}
+				},
+				{
+					"filename": "pixel city_Truck1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 30,
+						"h": 24
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 30,
+						"h": 24
+					},
+					"frame": {
+						"x": 170,
+						"y": 81,
+						"w": 30,
+						"h": 24
+					}
+				},
+				{
+					"filename": "Warehouse4.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 34,
+						"h": 26
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 34,
+						"h": 26
+					},
+					"frame": {
+						"x": 200,
+						"y": 81,
+						"w": 34,
+						"h": 26
+					}
+				},
+				{
+					"filename": "Park1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 34,
+						"h": 26
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 34,
+						"h": 26
+					},
+					"frame": {
+						"x": 0,
+						"y": 107,
+						"w": 34,
+						"h": 26
+					}
+				},
+				{
+					"filename": "Ind4.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 34,
+						"h": 26
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 34,
+						"h": 26
+					},
+					"frame": {
+						"x": 34,
+						"y": 107,
+						"w": 34,
+						"h": 26
+					}
+				},
+				{
+					"filename": "Warehouse2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 34,
+						"h": 26
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 34,
+						"h": 26
+					},
+					"frame": {
+						"x": 68,
+						"y": 107,
+						"w": 34,
+						"h": 26
+					}
+				},
+				{
+					"filename": "pixel city_TowerFloor2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 34,
+						"h": 26
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 34,
+						"h": 26
+					},
+					"frame": {
+						"x": 102,
+						"y": 107,
+						"w": 34,
+						"h": 26
+					}
+				},
+				{
+					"filename": "Warehouse1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 34,
+						"h": 26
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 34,
+						"h": 26
+					},
+					"frame": {
+						"x": 136,
+						"y": 107,
+						"w": 34,
+						"h": 26
+					}
+				},
+				{
+					"filename": "Warehouse3.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 34,
+						"h": 27
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 34,
+						"h": 27
+					},
+					"frame": {
+						"x": 170,
+						"y": 107,
+						"w": 34,
+						"h": 27
+					}
+				},
+				{
+					"filename": "Ind1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 34,
+						"h": 27
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 34,
+						"h": 27
+					},
+					"frame": {
+						"x": 204,
+						"y": 107,
+						"w": 34,
+						"h": 27
+					}
+				},
+				{
+					"filename": "Graveyard.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 34,
+						"h": 27
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 34,
+						"h": 27
+					},
+					"frame": {
+						"x": 0,
+						"y": 134,
+						"w": 34,
+						"h": 27
+					}
+				},
+				{
+					"filename": "pixel city_house1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 34,
+						"h": 27
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 34,
+						"h": 27
+					},
+					"frame": {
+						"x": 34,
+						"y": 134,
+						"w": 34,
+						"h": 27
+					}
+				},
+				{
+					"filename": "pixel city_TowerFloor1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 34,
+						"h": 28
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 34,
+						"h": 28
+					},
+					"frame": {
+						"x": 68,
+						"y": 134,
+						"w": 34,
+						"h": 28
+					}
+				},
+				{
+					"filename": "Apartment8.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 38,
+						"h": 29
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 38,
+						"h": 29
+					},
+					"frame": {
+						"x": 102,
+						"y": 134,
+						"w": 38,
+						"h": 29
+					}
+				},
+				{
+					"filename": "SmallFireStation.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 34,
+						"h": 29
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 34,
+						"h": 29
+					},
+					"frame": {
+						"x": 140,
+						"y": 134,
+						"w": 34,
+						"h": 29
+					}
+				},
+				{
+					"filename": "pixel city_Terrain4.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 34,
+						"h": 29
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 34,
+						"h": 29
+					},
+					"frame": {
+						"x": 174,
+						"y": 134,
+						"w": 34,
+						"h": 29
+					}
+				},
+				{
+					"filename": "Ind2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 34,
+						"h": 29
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 34,
+						"h": 29
+					},
+					"frame": {
+						"x": 208,
+						"y": 134,
+						"w": 34,
+						"h": 29
+					}
+				},
+				{
+					"filename": "PoliceOutpost.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 34,
+						"h": 29
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 34,
+						"h": 29
+					},
+					"frame": {
+						"x": 0,
+						"y": 163,
+						"w": 34,
+						"h": 29
+					}
+				},
+				{
+					"filename": "pixel city_Terrain6.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 34,
+						"h": 29
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 34,
+						"h": 29
+					},
+					"frame": {
+						"x": 34,
+						"y": 163,
+						"w": 34,
+						"h": 29
+					}
+				},
+				{
+					"filename": "pixel city_TerrainElevated.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 34,
+						"h": 29
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 34,
+						"h": 29
+					},
+					"frame": {
+						"x": 68,
+						"y": 163,
+						"w": 34,
+						"h": 29
+					}
+				},
+				{
+					"filename": "pixel city_Terrain1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 34,
+						"h": 29
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 34,
+						"h": 29
+					},
+					"frame": {
+						"x": 102,
+						"y": 163,
+						"w": 34,
+						"h": 29
+					}
+				},
+				{
+					"filename": "School.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 34,
+						"h": 29
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 34,
+						"h": 29
+					},
+					"frame": {
+						"x": 136,
+						"y": 163,
+						"w": 34,
+						"h": 29
+					}
+				},
+				{
+					"filename": "Clinic.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 34,
+						"h": 29
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 34,
+						"h": 29
+					},
+					"frame": {
+						"x": 170,
+						"y": 163,
+						"w": 34,
+						"h": 29
+					}
+				},
+				{
+					"filename": "HarborCrane.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 34,
+						"h": 30
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 34,
+						"h": 30
+					},
+					"frame": {
+						"x": 204,
+						"y": 163,
+						"w": 34,
+						"h": 30
+					}
+				},
+				{
+					"filename": "Apartment12.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 38,
+						"h": 30
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 38,
+						"h": 30
+					},
+					"frame": {
+						"x": 0,
+						"y": 193,
+						"w": 38,
+						"h": 30
+					}
+				},
+				{
+					"filename": "Apartment11.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 38,
+						"h": 30
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 38,
+						"h": 30
+					},
+					"frame": {
+						"x": 38,
+						"y": 193,
+						"w": 38,
+						"h": 30
+					}
+				},
+				{
+					"filename": "Ind3.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 34,
+						"h": 31
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 34,
+						"h": 31
+					},
+					"frame": {
+						"x": 76,
+						"y": 193,
+						"w": 34,
+						"h": 31
+					}
+				},
+				{
+					"filename": "Ind5.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 34,
+						"h": 32
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 34,
+						"h": 32
+					},
+					"frame": {
+						"x": 110,
+						"y": 193,
+						"w": 34,
+						"h": 32
+					}
+				},
+				{
+					"filename": "pixel city_TowerBase2x1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 52,
+						"h": 32
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 52,
+						"h": 32
+					},
+					"frame": {
+						"x": 144,
+						"y": 193,
+						"w": 52,
+						"h": 32
+					}
+				},
+				{
+					"filename": "Ind6.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 34,
+						"h": 32
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 34,
+						"h": 32
+					},
+					"frame": {
+						"x": 196,
+						"y": 193,
+						"w": 34,
+						"h": 32
+					}
+				},
+				{
+					"filename": "HighTech2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 23,
+						"h": 33
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 23,
+						"h": 33
+					},
+					"frame": {
+						"x": 0,
+						"y": 225,
+						"w": 23,
+						"h": 33
+					}
+				},
+				{
+					"filename": "AirportFlag1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 34,
+						"h": 33
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 34,
+						"h": 33
+					},
+					"frame": {
+						"x": 23,
+						"y": 225,
+						"w": 34,
+						"h": 33
+					}
+				},
+				{
+					"filename": "RedApartment1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 50,
+						"h": 37
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 50,
+						"h": 37
+					},
+					"frame": {
+						"x": 57,
+						"y": 225,
+						"w": 50,
+						"h": 37
+					}
+				},
+				{
+					"filename": "pixel city_Terrain.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 70,
+						"h": 39
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 70,
+						"h": 39
+					},
+					"frame": {
+						"x": 107,
+						"y": 225,
+						"w": 70,
+						"h": 39
+					}
+				},
+				{
+					"filename": "Runway2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 70,
+						"h": 39
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 70,
+						"h": 39
+					},
+					"frame": {
+						"x": 177,
+						"y": 225,
+						"w": 70,
+						"h": 39
+					}
+				},
+				{
+					"filename": "Apartment3.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 52,
+						"h": 39
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 52,
+						"h": 39
+					},
+					"frame": {
+						"x": 0,
+						"y": 264,
+						"w": 52,
+						"h": 39
+					}
+				},
+				{
+					"filename": "Runway3.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 70,
+						"h": 39
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 70,
+						"h": 39
+					},
+					"frame": {
+						"x": 52,
+						"y": 264,
+						"w": 70,
+						"h": 39
+					}
+				},
+				{
+					"filename": "Apartment2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 46,
+						"h": 39
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 46,
+						"h": 39
+					},
+					"frame": {
+						"x": 122,
+						"y": 264,
+						"w": 46,
+						"h": 39
+					}
+				},
+				{
+					"filename": "Apartment7.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 50,
+						"h": 39
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 50,
+						"h": 39
+					},
+					"frame": {
+						"x": 168,
+						"y": 264,
+						"w": 50,
+						"h": 39
+					}
+				},
+				{
+					"filename": "Apartment4.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 52,
+						"h": 40
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 52,
+						"h": 40
+					},
+					"frame": {
+						"x": 0,
+						"y": 303,
+						"w": 52,
+						"h": 40
+					}
+				},
+				{
+					"filename": "Apartment1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 52,
+						"h": 40
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 52,
+						"h": 40
+					},
+					"frame": {
+						"x": 52,
+						"y": 303,
+						"w": 52,
+						"h": 40
+					}
+				},
+				{
+					"filename": "pixel city_Concrete3.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 34,
+						"h": 41
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 34,
+						"h": 41
+					},
+					"frame": {
+						"x": 104,
+						"y": 303,
+						"w": 34,
+						"h": 41
+					}
+				},
+				{
+					"filename": "HighTech3.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 18,
+						"h": 42
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 18,
+						"h": 42
+					},
+					"frame": {
+						"x": 138,
+						"y": 303,
+						"w": 18,
+						"h": 42
+					}
+				},
+				{
+					"filename": "Apartment6.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 50,
+						"h": 43
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 50,
+						"h": 43
+					},
+					"frame": {
+						"x": 156,
+						"y": 303,
+						"w": 50,
+						"h": 43
+					}
+				},
+				{
+					"filename": "Apartment10.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 52,
+						"h": 44
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 52,
+						"h": 44
+					},
+					"frame": {
+						"x": 0,
+						"y": 346,
+						"w": 52,
+						"h": 44
+					}
+				},
+				{
+					"filename": "Apartment9.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 66,
+						"h": 46
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 66,
+						"h": 46
+					},
+					"frame": {
+						"x": 52,
+						"y": 346,
+						"w": 66,
+						"h": 46
+					}
+				},
+				{
+					"filename": "TelecomTower.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 10,
+						"h": 46
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 10,
+						"h": 46
+					},
+					"frame": {
+						"x": 118,
+						"y": 346,
+						"w": 10,
+						"h": 46
+					}
+				},
+				{
+					"filename": "Hospital.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 66,
+						"h": 46
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 66,
+						"h": 46
+					},
+					"frame": {
+						"x": 128,
+						"y": 346,
+						"w": 66,
+						"h": 46
+					}
+				},
+				{
+					"filename": "Apartment5.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 50,
+						"h": 47
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 50,
+						"h": 47
+					},
+					"frame": {
+						"x": 194,
+						"y": 346,
+						"w": 50,
+						"h": 47
+					}
+				},
+				{
+					"filename": "HighSchool.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 70,
+						"h": 48
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 70,
+						"h": 48
+					},
+					"frame": {
+						"x": 0,
+						"y": 393,
+						"w": 70,
+						"h": 48
+					}
+				},
+				{
+					"filename": "pixel city_tower6.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 52,
+						"h": 48
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 52,
+						"h": 48
+					},
+					"frame": {
+						"x": 70,
+						"y": 393,
+						"w": 52,
+						"h": 48
+					}
+				},
+				{
+					"filename": "PoliceStation.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 70,
+						"h": 49
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 70,
+						"h": 49
+					},
+					"frame": {
+						"x": 122,
+						"y": 393,
+						"w": 70,
+						"h": 49
+					}
+				},
+				{
+					"filename": "RedApartment4.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 50,
+						"h": 49
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 50,
+						"h": 49
+					},
+					"frame": {
+						"x": 192,
+						"y": 393,
+						"w": 50,
+						"h": 49
+					}
+				},
+				{
+					"filename": "pixel city_tower5.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 34,
+						"h": 50
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 34,
+						"h": 50
+					},
+					"frame": {
+						"x": 0,
+						"y": 442,
+						"w": 34,
+						"h": 50
+					}
+				},
+				{
+					"filename": "pixel city_tower7.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 34,
+						"h": 51
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 34,
+						"h": 51
+					},
+					"frame": {
+						"x": 34,
+						"y": 442,
+						"w": 34,
+						"h": 51
+					}
+				},
+				{
+					"filename": "RedApartment5.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 50,
+						"h": 53
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 50,
+						"h": 53
+					},
+					"frame": {
+						"x": 68,
+						"y": 442,
+						"w": 50,
+						"h": 53
+					}
+				},
+				{
+					"filename": "pixel city_Tower11.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 34,
+						"h": 54
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 34,
+						"h": 54
+					},
+					"frame": {
+						"x": 118,
+						"y": 442,
+						"w": 34,
+						"h": 54
+					}
+				},
+				{
+					"filename": "FireStation.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 70,
+						"h": 54
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 70,
+						"h": 54
+					},
+					"frame": {
+						"x": 152,
+						"y": 442,
+						"w": 70,
+						"h": 54
+					}
+				},
+				{
+					"filename": "TelecomTower2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 34,
+						"h": 55
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 34,
+						"h": 55
+					},
+					"frame": {
+						"x": 0,
+						"y": 496,
+						"w": 34,
+						"h": 55
+					}
+				},
+				{
+					"filename": "pixel city_tower9.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 52,
+						"h": 56
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 52,
+						"h": 56
+					},
+					"frame": {
+						"x": 34,
+						"y": 496,
+						"w": 52,
+						"h": 56
+					}
+				},
+				{
+					"filename": "pixel city_Tower1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 34,
+						"h": 58
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 34,
+						"h": 58
+					},
+					"frame": {
+						"x": 86,
+						"y": 496,
+						"w": 34,
+						"h": 58
+					}
+				},
+				{
+					"filename": "pixel city_Tower10.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 34,
+						"h": 58
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 34,
+						"h": 58
+					},
+					"frame": {
+						"x": 120,
+						"y": 496,
+						"w": 34,
+						"h": 58
+					}
+				},
+				{
+					"filename": "pixel city_tower8.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 34,
+						"h": 60
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 34,
+						"h": 60
+					},
+					"frame": {
+						"x": 154,
+						"y": 496,
+						"w": 34,
+						"h": 60
+					}
+				},
+				{
+					"filename": "pixel city_Tower2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 52,
+						"h": 63
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 52,
+						"h": 63
+					},
+					"frame": {
+						"x": 188,
+						"y": 496,
+						"w": 52,
+						"h": 63
+					}
+				},
+				{
+					"filename": "pixel city_tower4.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 34,
+						"h": 65
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 34,
+						"h": 65
+					},
+					"frame": {
+						"x": 0,
+						"y": 559,
+						"w": 34,
+						"h": 65
+					}
+				},
+				{
+					"filename": "pixel city_Tower3.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 34,
+						"h": 66
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 34,
+						"h": 66
+					},
+					"frame": {
+						"x": 34,
+						"y": 559,
+						"w": 34,
+						"h": 66
+					}
+				},
+				{
+					"filename": "Apartment14.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 38,
+						"h": 66
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 38,
+						"h": 66
+					},
+					"frame": {
+						"x": 68,
+						"y": 559,
+						"w": 38,
+						"h": 66
+					}
+				},
+				{
+					"filename": "Apartment15.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 66,
+						"h": 79
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 66,
+						"h": 79
+					},
+					"frame": {
+						"x": 106,
+						"y": 559,
+						"w": 66,
+						"h": 79
+					}
+				},
+				{
+					"filename": "Apartment13.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 66,
+						"h": 82
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 66,
+						"h": 82
+					},
+					"frame": {
+						"x": 172,
+						"y": 559,
+						"w": 66,
+						"h": 82
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:05321d047a0ada1f1aa88abf740c1bb5:993475944fd1e21a08fe5bbdba0384bc:ac64b69e0a198c939ba6037504e23c87$"
+	}
+}
