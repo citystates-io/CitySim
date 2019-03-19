@@ -22,7 +22,7 @@
     "pixi.js": "^5.0.0-rc",
     "phaser": "^3.16.2",
     "phaser3-plugin-isometric": "^0.0.7",
-    "slick-ui": "0.1.1",
+    "phaser-plugin-game-gui": "^0.1.14",
     "ts-loader": "^5.3.3",
     "ts-node": "^8.0.2",
     "typescript": "^3.3.1",
