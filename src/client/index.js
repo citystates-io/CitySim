@@ -183,7 +183,9 @@ class IsoInteractionExample extends Scene {
                 if(pointer.pointerState == pointer.pointerStates.ZONE) {
                     for(var x1 = xmin; x1 <= xmax; x1 += 16){
                         for(var y1 = ymin; y1 <= ymax; y1 += 16){
-                            map.mapArray[x1/16][y1/16].setTint(0x86bfff);
+                            if(map.mapArray[x1/16][y1/16].name == "Terrain"){
+                                map.mapArray[x1/16][y1/16].setTint(0x86bfff);
+                            }
                         }
                     }
                 }
@@ -225,7 +227,7 @@ class IsoInteractionExample extends Scene {
                 pointer.place = false;
                 this.alpha = 1;
             }
-            else if(!pointer.drag && (this.name == "Terrain" || this.name == "Road")){
+            else if(!pointer.drag && (this.name == "Terrain" || this.name == "Road" || this.name == "Building")){
                 this.clearTint();
             }
             else if(!pointer.drag && this.name == "Zone"){
@@ -243,6 +245,7 @@ class IsoInteractionExample extends Scene {
                 pointer.drag = true
             }
             else if(pointer.pointerState == pointer.pointerStates.PLACE){
+                this.name = "Building";
                 pointer.place = true;
                 this.alpha = 1;
             }
@@ -259,8 +262,10 @@ class IsoInteractionExample extends Scene {
                 if(pointer.pointerState == pointer.pointerStates.ZONE) {
                     for(var x1 = xmin; x1 <= xmax; x1 += 16){
                         for(var y1 = ymin; y1 <= ymax; y1 += 16){
-                            map.mapArray[x1/16][y1/16].setTint(0x86bfff);
-                            map.mapArray[x1/16][y1/16].name = "Zone";
+                            if(map.mapArray[x1/16][y1/16].name == "Terrain"){
+                                map.mapArray[x1/16][y1/16].setTint(0x86bfff);
+                                map.mapArray[x1/16][y1/16].name = "Zone";
+                            }
                         }
                     }
                 }
