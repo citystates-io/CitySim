@@ -20,6 +20,7 @@ class IsoInteractionExample extends Scene {
     this.load.image('tile', 'assets/Terrain.png');
     this.load.image('roadY', 'assets/pixel city_Road1.png');
     this.load.image('roadX', 'assets/pixel city_Road2.png');
+    this.load.image('fireStationS', 'assets/SmallFireStation.png');
     this.load.image('blue-button', 'assets/GUI/images/blue_button02.png');
     this.load.image('blue-button-selected', 'assets/GUI/images/blue_button05.png');
     this.load.scenePlugin({
@@ -114,7 +115,13 @@ class IsoInteractionExample extends Scene {
         this.input.setDraggable(map.mapArray[xx/16][yy/16]);
 
         map.mapArray[xx/16][yy/16].on('pointerover', function() {
-            if(!pointer.drag){
+            console.log(pointer.pointerState);
+            if(pointer.pointerState == pointer.pointerStates.PLACE){
+                console.log('placing building preview..');
+                this.setTexture('fireStationS');
+                this.alpha = 0.5;
+            }
+            else if(!pointer.drag){
                 this.setTint(0x86bfda);
             }
             else{
@@ -210,7 +217,15 @@ class IsoInteractionExample extends Scene {
         });
 
         map.mapArray[xx/16][yy/16].on('pointerout', function() {
-            if(!pointer.drag && (this.name == "Terrain" || this.name == "Road")){
+            if(pointer.pointerState == pointer.pointerStates.PLACE){
+                console.log('Removing building preview');
+                if(!pointer.place){
+                    this.setTexture('tile');
+                }
+                pointer.place = false;
+                this.alpha = 1;
+            }
+            else if(!pointer.drag && (this.name == "Terrain" || this.name == "Road")){
                 this.clearTint();
             }
             else if(!pointer.drag && this.name == "Zone"){
@@ -226,6 +241,10 @@ class IsoInteractionExample extends Scene {
                 pointer.dragboxCoords[2] = false;
                 pointer.dragboxCoords[3] = false;
                 pointer.drag = true
+            }
+            else if(pointer.pointerState == pointer.pointerStates.PLACE){
+                pointer.place = true;
+                this.alpha = 1;
             }
         });
 

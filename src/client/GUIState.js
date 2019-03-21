@@ -8,7 +8,8 @@ export default class Pointer{
         };
         this.pointerState = this.pointerStates.ZONE;
         this.dragboxCoords = [0, 0, 0, 0];
-        this.drag = false
+        this.drag = false;
+        this.place = false;
     }
 
     setPointerState(newState) {
