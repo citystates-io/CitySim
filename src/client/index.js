@@ -115,9 +115,7 @@ class IsoInteractionExample extends Scene {
         this.input.setDraggable(map.mapArray[xx/16][yy/16]);
 
         map.mapArray[xx/16][yy/16].on('pointerover', function() {
-            console.log(pointer.pointerState);
             if(pointer.pointerState == pointer.pointerStates.PLACE){
-                console.log('placing building preview..');
                 this.setTexture('fireStationS');
                 this.alpha = 0.5;
             }
@@ -140,7 +138,9 @@ class IsoInteractionExample extends Scene {
                             var prevXDiff = Math.max(pointer.dragboxCoords[0], pointer.dragboxCoords[2]) - Math.min(pointer.dragboxCoords[0], pointer.dragboxCoords[2]);
                             if(thisXDiff <= prevXDiff){
                                 for(var x2 = Math.min(pointer.dragboxCoords[0], pointer.dragboxCoords[2]); x2 <= Math.max(pointer.dragboxCoords[2], pointer.dragboxCoords[0]); x2 += 16){
-                                    map.mapArray[x1/16][y1/16].clearTint();
+                                    if(map.mapArray[x1/16][y1/16].name != "Zone"){
+                                        map.mapArray[x1/16][y1/16].clearTint();
+                                    }
                                 }
                             }
                         }
@@ -152,22 +152,30 @@ class IsoInteractionExample extends Scene {
                         var x1;
                         var y1 = pointer.dragboxCoords[1];
                         for(x1 = xmin; x1 <= xmax; x1 += 16){
-                            map.mapArray[x1/16][y1/16].clearTint();
+                            if(map.mapArray[x1/16][y1/16].name != "Zone"){
+                                map.mapArray[x1/16][y1/16].clearTint();
+                            }
                         }
                         x1 = pointer.dragboxCoords[2];
                         for(y1 = ymin; y1 <= ymax; y1 += 16){
-                            map.mapArray[x1/16][y1/16].clearTint();
+                            if(map.mapArray[x1/16][y1/16].name != "Zone"){
+                                map.mapArray[x1/16][y1/16].clearTint();
+                            }
                         }
                     }
                     else {
                         var y1;
                         var x1 = pointer.dragboxCoords[0];
                         for(y1 = ymin; y1 <= ymax; y1 += 16){
-                            map.mapArray[x1/16][y1/16].clearTint();
+                            if(map.mapArray[x1/16][y1/16].name != "Zone"){
+                                map.mapArray[x1/16][y1/16].clearTint();
+                            }
                         }
                         y1 = pointer.dragboxCoords[3];
                         for(x1 = xmin; x1 <= xmax; x1 += 16){
-                            map.mapArray[x1/16][y1/16].clearTint();
+                            if(map.mapArray[x1/16][y1/16].name != "Zone"){
+                                map.mapArray[x1/16][y1/16].clearTint();
+                            }
                         }
                     }
                 }
@@ -220,9 +228,11 @@ class IsoInteractionExample extends Scene {
 
         map.mapArray[xx/16][yy/16].on('pointerout', function() {
             if(pointer.pointerState == pointer.pointerStates.PLACE){
-                console.log('Removing building preview');
-                if(!pointer.place){
+                if(!pointer.place && (this.name == "Terrain" || this.name == "Zone")){
                     this.setTexture('tile');
+                }
+                else if(!pointer.place && this.name == "Road"){
+                    this.setTexture('roadY');
                 }
                 pointer.place = false;
                 this.alpha = 1;
@@ -245,6 +255,9 @@ class IsoInteractionExample extends Scene {
                 pointer.drag = true
             }
             else if(pointer.pointerState == pointer.pointerStates.PLACE){
+                if(this.name == "Zone"){
+                    this.clearTint();
+                }
                 this.name = "Building";
                 pointer.place = true;
                 this.alpha = 1;
@@ -307,7 +320,7 @@ class IsoInteractionExample extends Scene {
         });
       }
     }
-    console.log(map.mapArray);
+    //console.log(map.mapArray);
   }
   update(time, delta){
       this.controls.update(delta);
