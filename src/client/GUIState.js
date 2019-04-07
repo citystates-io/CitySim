@@ -33,7 +33,7 @@ export default class Pointer{
                     this.place = false;
                     this.transit = true;
                     break;
-                case 'PLACE':
+                case 'PLOP':
                     this.zone = false;
                     this.place = true;
                     this.transit = false;

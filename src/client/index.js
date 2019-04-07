@@ -3,6 +3,7 @@ import IsoPlugin from 'phaser3-plugin-isometric';
 import Map from './map.js';
 import Pointer from './GUIState.js';
 import Zone from './zone.js';
+import Plop from './plop.js';
 
 var game;
 
@@ -17,13 +18,31 @@ class IsoInteractionExample extends Scene {
     this.zones = [new Zone('Residential', 0x36ed36, 'green-button', 0),
                   new Zone('Commercial', 0x4286f4, 'blue-button', 1),
                   new Zone('Industrial', 0xc5cc13, 'yellow-button', 2)];
+    this.plops = [new Plop('Firestation Small', 'blue-button', 'fireStationS', 0),
+                  new Plop('Clinic', 'blue-button', 'healthS', 1),
+                  new Plop('Elementary School', 'blue-button', 'schoolS', 2),
+                  new Plop('Police Outpost', 'blue-button', 'policeS', 3)];
   }
 
   preload() {
-    this.load.image('tile', 'assets/Terrain.png');
-    this.load.image('roadY', 'assets/pixel city_Road1.png');
-    this.load.image('roadX', 'assets/pixel city_Road2.png');
+    this.load.image('tile', 'assets/TerrainTest.png');
+    this.load.image('roadY', 'assets/RoadY.png');
+    this.load.image('roadX', 'assets/RoadX.png');
+    this.load.image('roadXNegY', 'assets/RoadXNegY.png');
+    this.load.image('roadXPosY', 'assets/RoadXPosY.png');
+    this.load.image('roadYNegX', 'assets/RoadYNegX.png');
+    this.load.image('roadYPosX', 'assets/RoadYPosX.png');
+    this.load.image('roadInt', 'assets/RoadInt.png');
+    this.load.image('roadPosXPosY', 'assets/RoadTurnPosXPosY.png');
+    this.load.image('roadNegXNegY', 'assets/RoadTurnNegXNegY.png');
+    this.load.image('roadPosXNegY', 'assets/RoadTurnPosXNegY.png');
+    this.load.image('roadNegXPosY', 'assets/RoadTurnNegXPosY.png');
     this.load.image('fireStationS', 'assets/SmallFireStation.png');
+    this.load.image('healthS', 'assets/Clinic.png');
+    this.load.image('healthB', 'assets/Hospital.png');
+    this.load.image('schoolS', 'assets/School.png');
+    this.load.image('schoolB', 'assets/HighSchool.png');
+    this.load.image('policeS', 'assets/PoliceOutpost.png');
     this.load.image('blue-button', 'assets/GUI/images/blue_button02.png');
     this.load.image('blue-button-selected', 'assets/GUI/images/blue_button05.png');
     this.load.image('grey-button', 'assets/GUI/images/grey_button02.png');
@@ -49,34 +68,41 @@ class IsoInteractionExample extends Scene {
     this.uiContainer.scrollFactorY = 0;
     this.uiContainer.depth = 2000;
     this.zoneUIContainer = this.add.container();
+    this.plopUIContainer = this.add.container();
 
     // Initialize pointer states
     for(var x = 0; x < this.zones.length; x++){
         pointer.addState(this.zones[x].name, 'ZONE');
     }
+    for(var x = 0; x < this.plops.length; x++){
+        pointer.addState(this.plops[x].name, 'PLOP');
+    }
     pointer.addState('Road', 'TRANSIT');
-    pointer.addState('Place', 'PLACE');
 
 
     var zoneButton = this.add.image(50, 110, 'grey-button').setInteractive();
     this.zoneButtons = new Array();
     this.zoneButtonTexts = new Array();
-    //var zoneButtonRes = this.add.image(240, 65, 'green-button').setInteractive();
-    //var zoneButtonCom = this.add.image(240, 110, 'blue-button').setInteractive();
-    //var zoneButtonInd = this.add.image(240, 155, 'yellow-button').setInteractive();
     var roadButton = this.add.image(50, 155, 'grey-button').setInteractive();
-    var placeTileButton = this.add.image(50, 200, 'grey-button').setInteractive();
+    var plopButton = this.add.image(50, 200, 'grey-button').setInteractive();
+    this.plopButtons = new Array();
+    this.plopButtonTexts = new Array();
     var zoneText = this.add.text(10, 100, 'Zone', { fill: '#000' });
-    //var zoneTextRes = this.add.text(200, 55, this.zones[0].name, { fill: '#000' });
-    //var zoneTextCom = this.add.text(200, 100, this.zones[1].name, { fill: '#000' });
-    //var zoneTextInd = this.add.text(200, 145, this.zones[2].name, { fill: '#000' });
     var roadText = this.add.text(10, 145, 'Place Road', { fill: '#000' });
-    var placeTileText = this.add.text(10, 190, 'Place Tile', { fill: '#000' });
+    var placeTileText = this.add.text(10, 190, 'Place Building', { fill: '#000' });
 
     zoneButton.on('pointerdown', function() {
         if(!this.state){
             this.scene.zoneUIContainer.visible = true;
             this.scene.zoneUIContainer.active = true;
+            if(plopButton.state){
+                this.scene.plopUIContainer.visible = false;
+                this.scene.plopUIContainer.active = false;
+                for(var x = 0; x < this.scene.plops.length; x++){
+                    this.scene.plopButtons[x].clearTint();
+                }
+                plopButton.state = false;
+            }
             this.setTint(0xd2d4d8);
             this.state = true;
             pointer.setState('Select');
@@ -92,7 +118,7 @@ class IsoInteractionExample extends Scene {
             pointer.setState('Select');
         }
         roadButton.clearTint();
-        placeTileButton.clearTint();
+        plopButton.clearTint();
         console.log("state set to: ", pointer.state);
     });
     roadButton.on('pointerdown', function() {
@@ -106,20 +132,43 @@ class IsoInteractionExample extends Scene {
             }
             zoneButton.state = false;
         }
+        else if(plopButton.state){
+            this.scene.plopUIContainer.visible = false;
+            this.scene.plopUIContainer.active = false;
+            for(var x = 0; x < this.scene.plops.length; x++){
+                this.scene.plopButtons[x].clearTint();
+            }
+            plopButton.state = false;
+        }
         zoneButton.clearTint();
-        placeTileButton.clearTint();
+        plopButton.clearTint();
         console.log("state set to: ", pointer.state);
     });
-    placeTileButton.on('pointerdown', function() {
-        pointer.setState('Place');
-        this.setTint(0xd2d4d8);
-        if(zoneButton.state){
-            this.scene.zoneUIContainer.visible = false;
-            this.scene.zoneUIContainer.active = false;
-            for(var x = 0; x < this.scene.zones.length; x++){
-                this.scene.zoneButtons[x].clearTint();
+    plopButton.on('pointerdown', function() {
+        if(!this.state){
+            this.scene.plopUIContainer.visible = true;
+            this.scene.plopUIContainer.active = true;
+            if(zoneButton.state){
+                this.scene.zoneUIContainer.visible = false;
+                this.scene.zoneUIContainer.active = false;
+                for(var x = 0; x < this.scene.zones.length; x++){
+                    this.scene.zoneButtons[x].clearTint();
+                }
+                zoneButton.state = false;
             }
-            zoneButton.state = false;
+            this.setTint(0xd2d4d8);
+            this.state = true;
+            pointer.setState('Select');
+        }
+        else if(this.state){
+            this.scene.plopUIContainer.visible = false;
+            this.scene.plopUIContainer.active = false;
+            for(var x = 0; x < this.scene.plops.length; x++){
+                this.scene.plopButtons[x].clearTint();
+            }
+            this.clearTint();
+            this.state = false;
+            pointer.setState('Select');
         }
         roadButton.clearTint();
         zoneButton.clearTint();
@@ -133,6 +182,14 @@ class IsoInteractionExample extends Scene {
         this.zoneButtons[x] = this.add.image(ZONE_BUTTONS_OFFSET_X, ZONE_BUTTONS_OFFSET_Y + x*45 + 10, this.zones[x].buttonImage).setInteractive();
         this.zoneButtonTexts[x] = this.add.text(ZONE_BUTTONS_OFFSET_X - 40, ZONE_BUTTONS_OFFSET_Y + x*45, this.zones[x].name, { fill: '#000' });
         this.zoneUIContainer.add([this.zoneButtons[x], this.zoneButtonTexts[x]]);
+    }
+    // plop buttons instantiation
+    const PLOP_BUTTONS_OFFSET_X = 240;
+    const PLOP_BUTTONS_OFFSET_Y = 145;
+    for(var x = 0; x < this.plops.length; x++){
+        this.plopButtons[x] = this.add.image(PLOP_BUTTONS_OFFSET_X, PLOP_BUTTONS_OFFSET_Y + x*45 + 10, this.plops[x].buttonImage).setInteractive();
+        this.plopButtonTexts[x] = this.add.text(PLOP_BUTTONS_OFFSET_X - 75, PLOP_BUTTONS_OFFSET_Y + x*45, this.plops[x].name, { fill: '#000' });
+        this.plopUIContainer.add([this.plopButtons[x], this.plopButtonTexts[x]]);
     }
     // zone button events
     let zones = this.zones;
@@ -151,11 +208,31 @@ class IsoInteractionExample extends Scene {
             }.bind(this));
         }())
     }
+    // plop button events
+    let plops = this.plops;
+    let plopButtons = this.plopButtons;
+    for(var x1 = 0; x1 < this.plops.length; x1++){
+        (function() {
+            var thisX = plops[x1].ID;
+            plopButtons[x1].on('pointerdown', function() {
+                for(var y = 0; y < plops.length; y++){
+                    if(thisX != y){
+                        plopButtons[y].clearTint();
+                    }
+                }
+                pointer.setState(plops[thisX].name);
+                plopButtons[thisX].setTint(0xd2d4d8);
+            }.bind(this));
+        }())
+    }
+
     this.zoneUIContainer.visible = false;
     this.zoneUIContainer.active = false;
-    this.uiContainer.add([zoneButton, roadButton, placeTileButton, zoneText, roadText, placeTileText, this.zoneUIContainer]);
+    this.plopUIContainer.visible = false;
+    this.plopUIContainer.active = false;
+    this.uiContainer.add([zoneButton, roadButton, plopButton, zoneText, roadText, placeTileText, this.zoneUIContainer]);
 
-    this.iso.projector.origin.setTo(0.5, 0.3);
+    this.iso.projector.origin.setTo(0.5, 0.25);
 
     // adjustable window size
     window.addEventListener('resize', () => {
@@ -194,18 +271,25 @@ class IsoInteractionExample extends Scene {
     var map = new Map(64, 64);
     var pointer = this.pointer;
     var zones = this.zones;
+    var plops = this.plops;
 
     // Map creation & interaction
-    for (var xx = 0; xx < 512*2; xx += 16) {
-      for (var yy = 0; yy < 512*2; yy += 16) {
-        map.mapArray[xx/16][yy/16] = this.add.isoSprite(xx, yy, 0, 'tile', this.isoGroup);
-        map.mapArray[xx/16][yy/16].name = "Terrain";
-        map.mapArray[xx/16][yy/16].setInteractive({dropZone: true});
-        this.input.setDraggable(map.mapArray[xx/16][yy/16]);
+    let YSIZE = 16;
+    let XSIZE = 16;
+    for (var xx = 0; xx < XSIZE*64; xx += XSIZE) {
+      for (var yy = 0; yy < YSIZE*64; yy += YSIZE) {
+        map.mapArray[xx/XSIZE][yy/YSIZE] = this.add.isoSprite(xx, yy, 0, 'tile', this.isoGroup);
+        map.mapArray[xx/XSIZE][yy/YSIZE].name = "Terrain";
+        map.mapArray[xx/XSIZE][yy/YSIZE].setInteractive({dropZone: true});
+        this.input.setDraggable(map.mapArray[xx/XSIZE][yy/YSIZE]);
 
-        map.mapArray[xx/16][yy/16].on('pointerover', function() {
+        map.mapArray[xx/XSIZE][yy/YSIZE].on('pointerover', function() {
             if(pointer.place){
-                this.setTexture('fireStationS');
+                for(var x = 0; x < plops.length; x++){
+                    if(pointer.state.name == plops[x].name){
+                        this.setTexture(plops[x].texture)
+                    }
+                }
                 this.alpha = 0.5;
             }
             else if(!pointer.drag){
@@ -228,10 +312,10 @@ class IsoInteractionExample extends Scene {
                                 var prevXDiff = Math.max(pointer.dragboxCoords[0], pointer.dragboxCoords[2]) - Math.min(pointer.dragboxCoords[0], pointer.dragboxCoords[2]);
                                 if(thisXDiff <= prevXDiff){
                                     for(var x2 = Math.min(pointer.dragboxCoords[0], pointer.dragboxCoords[2]); x2 <= Math.max(pointer.dragboxCoords[2], pointer.dragboxCoords[0]); x2 += 16){
-                                        if(map.mapArray[x1/16][y1/16].name != "Zone"){
-                                            map.mapArray[x1/16][y1/16].clearTint();
+                                        if(map.mapArray[x1/XSIZE][y1/YSIZE].name != "Zone"){
+                                            map.mapArray[x1/XSIZE][y1/YSIZE].clearTint();
                                         }
-                                        else map.mapArray[x1/16][y1/16].setTint(map.mapArray[x1/16][y1/16].data.values.tint);
+                                        else map.mapArray[x1/XSIZE][y1/YSIZE].setTint(map.mapArray[x1/XSIZE][y1/YSIZE].data.values.tint);
                                     }
                                 }
                             }
@@ -244,35 +328,35 @@ class IsoInteractionExample extends Scene {
                         if(xdiff > ydiff) {
                             var x1;
                             var y1 = pointer.dragboxCoords[1];
-                            for(x1 = xmin; x1 <= xmax; x1 += 16){
-                                if(map.mapArray[x1/16][y1/16].name != "Zone"){
-                                    map.mapArray[x1/16][y1/16].clearTint();
+                            for(x1 = xmin; x1 <= xmax; x1 += XSIZE){
+                                if(map.mapArray[x1/XSIZE][y1/YSIZE].name != "Zone"){
+                                    map.mapArray[x1/XSIZE][y1/YSIZE].clearTint();
                                 }
-                                else map.mapArray[x1/16][y1/16].setTint(map.mapArray[x1/16][y1/16].data.values.tint)
+                                else map.mapArray[x1/XSIZE][y1/YSIZE].setTint(map.mapArray[x1/XSIZE][y1/YSIZE].data.values.tint)
                             }
                             x1 = pointer.dragboxCoords[2];
-                            for(y1 = ymin; y1 <= ymax; y1 += 16){
-                                if(map.mapArray[x1/16][y1/16].name != "Zone"){
-                                    map.mapArray[x1/16][y1/16].clearTint();
+                            for(y1 = ymin; y1 <= ymax; y1 += YSIZE){
+                                if(map.mapArray[x1/XSIZE][y1/YSIZE].name != "Zone"){
+                                    map.mapArray[x1/XSIZE][y1/YSIZE].clearTint();
                                 }
-                                else map.mapArray[x1/16][y1/16].setTint(map.mapArray[x1/16][y1/16].data.values.tint)
+                                else map.mapArray[x1/XSIZE][y1/YSIZE].setTint(map.mapArray[x1/XSIZE][y1/YSIZE].data.values.tint)
                             }
                         }
                         else {
                             var y1;
                             var x1 = pointer.dragboxCoords[0];
-                            for(y1 = ymin; y1 <= ymax; y1 += 16){
-                                if(map.mapArray[x1/16][y1/16].name != "Zone"){
-                                    map.mapArray[x1/16][y1/16].clearTint();
+                            for(y1 = ymin; y1 <= ymax; y1 += YSIZE){
+                                if(map.mapArray[x1/XSIZE][y1/YSIZE].name != "Zone"){
+                                    map.mapArray[x1/XSIZE][y1/YSIZE].clearTint();
                                 }
-                                else map.mapArray[x1/16][y1/16].setTint(map.mapArray[x1/16][y1/16].data.values.tint)
+                                else map.mapArray[x1/XSIZE][y1/YSIZE].setTint(map.mapArray[x1/XSIZE][y1/YSIZE].data.values.tint)
                             }
                             y1 = pointer.dragboxCoords[3];
-                            for(x1 = xmin; x1 <= xmax; x1 += 16){
-                                if(map.mapArray[x1/16][y1/16].name != "Zone"){
-                                    map.mapArray[x1/16][y1/16].clearTint();
+                            for(x1 = xmin; x1 <= xmax; x1 += XSIZE){
+                                if(map.mapArray[x1/XSIZE][y1/YSIZE].name != "Zone"){
+                                    map.mapArray[x1/XSIZE][y1/YSIZE].clearTint();
                                 }
-                                else map.mapArray[x1/16][y1/16].setTint(map.mapArray[x1/16][y1/16].data.values.tint)
+                                else map.mapArray[x1/XSIZE][y1/YSIZE].setTint(map.mapArray[x1/XSIZE][y1/YSIZE].data.values.tint)
                             }
                         }
                     }
@@ -287,12 +371,12 @@ class IsoInteractionExample extends Scene {
                 var ydiff = ymax - ymin;
                 // ZONE: set tint of current dragbox
                 if(pointer.zone) {
-                    for(var x1 = xmin; x1 <= xmax; x1 += 16){
-                        for(var y1 = ymin; y1 <= ymax; y1 += 16){
-                            if(map.mapArray[x1/16][y1/16].name == "Terrain" || map.mapArray[x1/16][y1/16].name == "Zone"){
+                    for(var x1 = xmin; x1 <= xmax; x1 += XSIZE){
+                        for(var y1 = ymin; y1 <= ymax; y1 += YSIZE){
+                            if(map.mapArray[x1/XSIZE][y1/YSIZE].name == "Terrain" || map.mapArray[x1/XSIZE][y1/YSIZE].name == "Zone"){
                                 for(var n = 0; n < zones.length; n++){
                                     if(pointer.state.name == zones[n].name){
-                                        map.mapArray[x1/16][y1/16].setTint(zones[n].tint);
+                                        map.mapArray[x1/XSIZE][y1/YSIZE].setTint(zones[n].tint);
                                     }
                                 }
                             }
@@ -305,33 +389,36 @@ class IsoInteractionExample extends Scene {
                     if(xdiff > ydiff) {
                         var x1;
                         var y1 = pointer.dragboxCoords[1];
-                        for(x1 = xmin; x1 <= xmax; x1 += 16){
-                            map.mapArray[x1/16][y1/16].setTint(zoneTints.COM);
+                        for(x1 = xmin; x1 <= xmax; x1 += XSIZE){
+                            map.mapArray[x1/XSIZE][y1/YSIZE].setTint(zoneTints.COM);
                         }
                         x1 = pointer.dragboxCoords[2];
-                        for(y1 = ymin; y1 <= ymax; y1 += 16){
-                            map.mapArray[x1/16][y1/16].setTint(zoneTints.COM);
+                        for(y1 = ymin; y1 <= ymax; y1 += YSIZE){
+                            map.mapArray[x1/XSIZE][y1/YSIZE].setTint(zoneTints.COM);
                         }
                     }
                     else {
                         var y1;
                         var x1 = pointer.dragboxCoords[0];
-                        for(y1 = ymin; y1 <= ymax; y1 += 16){
-                            map.mapArray[x1/16][y1/16].setTint(zoneTints.COM);
+                        for(y1 = ymin; y1 <= ymax; y1 += YSIZE){
+                            map.mapArray[x1/XSIZE][y1/YSIZE].setTint(zoneTints.COM);
                         }
                         y1 = pointer.dragboxCoords[3];
-                        for(x1 = xmin; x1 <= xmax; x1 += 16){
-                            map.mapArray[x1/16][y1/16].setTint(zoneTints.COM);
+                        for(x1 = xmin; x1 <= xmax; x1 += XSIZE){
+                            map.mapArray[x1/XSIZE][y1/YSIZE].setTint(zoneTints.COM);
                         }
                     }
                 }
             }
         });
 
-        map.mapArray[xx/16][yy/16].on('pointerout', function() {
-            if(pointer.state.mode == 'PLACE'){
-                if(!pointer.placed && (this.name == "Terrain" || this.name == "Zone")){
-                    this.setTexture('tile');
+        map.mapArray[xx/XSIZE][yy/YSIZE].on('pointerout', function() {
+            if(pointer.state.mode == 'PLOP'){
+                if(!pointer.placed && (this.name == "Terrain" || this.name == "Zone" || this.name == "Building")){
+                    if(this.getData('texture')){
+                        this.setTexture(this.getData('texture'));
+                    }
+                    else this.setTexture('tile');
                 }
                 else if(!pointer.placed && this.name == "Road"){
                     this.setTexture('roadY');
@@ -347,13 +434,13 @@ class IsoInteractionExample extends Scene {
             }
         });
 
-        map.mapArray[xx/16][yy/16].on('pointerdown', function() {
+        map.mapArray[xx/XSIZE][yy/YSIZE].on('pointerdown', function() {
             if(pointer.zone){
                     pointer.dragboxCoords[0] = this.isoX;
                     pointer.dragboxCoords[1] = this.isoY;
                     // reset 2nd dragbox coords so pointerover event knows it's in a new drag event
-                    pointer.dragboxCoords[2] = false;
-                    pointer.dragboxCoords[3] = false;
+                    pointer.dragboxCoords[2] = this.isoX;
+                    pointer.dragboxCoords[3] = this.isoY;
                     pointer.drag = true
 
             }
@@ -361,8 +448,8 @@ class IsoInteractionExample extends Scene {
                 pointer.dragboxCoords[0] = this.isoX;
                 pointer.dragboxCoords[1] = this.isoY;
                 // reset 2nd dragbox coords so pointerover event knows it's in a new drag event
-                pointer.dragboxCoords[2] = false;
-                pointer.dragboxCoords[3] = false;
+                pointer.dragboxCoords[2] = this.isoX;
+                pointer.dragboxCoords[3] = this.isoY;
                 pointer.drag = true
             }
             else if(pointer.place) {
@@ -370,12 +457,17 @@ class IsoInteractionExample extends Scene {
                     this.clearTint();
                 }
                 this.name = "Building";
+                for(var x = 0; x < plops.length; x++){
+                    if(pointer.state.name == plops[x].name){
+                        this.setData("texture", plops[x].texture)
+                    }
+                }
                 pointer.placed = true;
                 this.alpha = 1;
             }
         });
 
-        map.mapArray[xx/16][yy/16].on('pointerup', function(){
+        map.mapArray[xx/XSIZE][yy/YSIZE].on('pointerup', function(){
             pointer.drag = false;
             if(pointer.zone || pointer.transit){
                 var xmin = Math.min(pointer.dragboxCoords[0], pointer.dragboxCoords[2]);
@@ -393,48 +485,176 @@ class IsoInteractionExample extends Scene {
                             break;
                         }
                     }
-                    for(var x1 = xmin; x1 <= xmax; x1 += 16){
-                        for(var y1 = ymin; y1 <= ymax; y1 += 16){
-                            if(map.mapArray[x1/16][y1/16].name == "Terrain" || map.mapArray[x1/16][y1/16].name == "Zone"){
-                                map.mapArray[x1/16][y1/16].setTint(thisZone.tint);
-                                map.mapArray[x1/16][y1/16].name = "Zone";
-                                map.mapArray[x1/16][y1/16].setData({zoneType: "Residential", tint: thisZone.tint});
+                    for(var x1 = xmin; x1 <= xmax; x1 += XSIZE){
+                        for(var y1 = ymin; y1 <= ymax; y1 += YSIZE){
+                            if(map.mapArray[x1/XSIZE][y1/YSIZE].name == "Terrain" || map.mapArray[x1/XSIZE][y1/YSIZE].name == "Zone"){
+                                map.mapArray[x1/XSIZE][y1/YSIZE].setTint(thisZone.tint);
+                                map.mapArray[x1/XSIZE][y1/YSIZE].name = "Zone";
+                                map.mapArray[x1/XSIZE][y1/YSIZE].setData({zoneType: thisZone.name, tint: thisZone.tint});
                             }
                         }
                     }
                 }
                 // Road building logic
                 else {
-                        if(xdiff > ydiff) {
-                            var x1;
-                            var y1 = pointer.dragboxCoords[1];
-                            for(x1 = xmin; x1 <= xmax; x1 += 16){
-                                map.mapArray[x1/16][y1/16].setTexture('roadX');
-                                map.mapArray[x1/16][y1/16].clearTint();
-                                map.mapArray[x1/16][y1/16].name = "Road";
+                    console.log("Start Point:", pointer.dragboxCoords[0]/16,  pointer.dragboxCoords[1]/16)
+                    console.log("End Point:", pointer.dragboxCoords[2]/16,  pointer.dragboxCoords[3]/16)
+                    if(xdiff > ydiff) {
+                        var x1;
+                        var y1 = pointer.dragboxCoords[1];
+                        for(x1 = xmin; x1 <= xmax; x1 += XSIZE){
+                            if(map.mapArray[x1/XSIZE][y1/YSIZE].name == "Road"){
+                                if(map.mapArray[x1/XSIZE][(y1 + YSIZE)/YSIZE].name == "Road") var yPos = true;
+                                if(map.mapArray[x1/XSIZE][(y1 - YSIZE)/YSIZE].name == "Road") var yNeg = true;
+                                switch(true){
+                                    case yPos && yNeg:
+                                        map.mapArray[x1/XSIZE][y1/YSIZE].setTexture('roadInt');
+                                        break;
+                                    case yPos && !yNeg:
+                                        map.mapArray[x1/XSIZE][y1/YSIZE].setTexture('roadXPosY');
+                                        break;
+                                    case !yPos && yNeg:
+                                        map.mapArray[x1/XSIZE][y1/YSIZE].setTexture('roadXNegY');
+                                        break;
+                                    default:
+                                    map.mapArray[x1/XSIZE][y1/YSIZE].setTexture('roadX');
+                                }
                             }
-                            x1 = pointer.dragboxCoords[2];
-                            for(y1 = ymin; y1 <= ymax; y1 += 16){
-                                map.mapArray[x1/16][y1/16].setTexture('roadY');
-                                map.mapArray[x1/16][y1/16].clearTint();
-                                map.mapArray[x1/16][y1/16].name = "Road";
+                            else{
+                                map.mapArray[x1/XSIZE][y1/YSIZE].setTexture('roadX');
+                                map.mapArray[x1/XSIZE][y1/YSIZE].name = "Road";
                             }
+                            map.mapArray[x1/XSIZE][y1/YSIZE].clearTint();
                         }
-                        else {
-                            var y1;
-                            var x1 = pointer.dragboxCoords[0];
-                            for(y1 = ymin; y1 <= ymax; y1 += 16){
-                                map.mapArray[x1/16][y1/16].setTexture('roadY');
-                                map.mapArray[x1/16][y1/16].clearTint();
-                                map.mapArray[x1/16][y1/16].name = "Road";
+                        x1 = pointer.dragboxCoords[2];
+                        for(y1 = ymin; y1 <= ymax; y1 += YSIZE){
+                            if(map.mapArray[x1/XSIZE][y1/YSIZE].name == "Road"){
+                                if(map.mapArray[(x1 + XSIZE)/XSIZE][y1/YSIZE].name == "Road") var xPos = true;
+                                if(map.mapArray[(x1 - XSIZE)/XSIZE][y1/YSIZE].name == "Road") var xNeg = true;
+                                switch(true){
+                                    case xPos && xNeg:
+                                        map.mapArray[x1/XSIZE][y1/YSIZE].setTexture('roadInt');
+                                        break;
+                                    case xPos && !xNeg:
+                                        map.mapArray[x1/XSIZE][y1/YSIZE].setTexture('roadYPosX');
+                                        break;
+                                    case !xPos && xNeg:
+                                        map.mapArray[x1/XSIZE][y1/YSIZE].setTexture('roadYNegX');
+                                        break;
+                                    default:
+                                    map.mapArray[x1/XSIZE][y1/YSIZE].setTexture('roadY');
+                                }
                             }
-                            y1 = pointer.dragboxCoords[3];
-                            for(x1 = xmin; x1 <= xmax; x1 += 16){
-                                map.mapArray[x1/16][y1/16].setTexture('roadX');
-                                map.mapArray[x1/16][y1/16].clearTint();
-                                map.mapArray[x1/16][y1/16].name = "Road";
+                            else{
+                                map.mapArray[x1/XSIZE][y1/YSIZE].setTexture('roadY');
+                                map.mapArray[x1/XSIZE][y1/YSIZE].name = "Road";
                             }
+                            map.mapArray[x1/XSIZE][y1/YSIZE].clearTint();
                         }
+
+                        // Road Corners
+                        var xpos, ypos;
+                        if(pointer.dragboxCoords[0] > pointer.dragboxCoords[2]){
+                            xpos = false;
+                        }
+                        else xpos = true;
+                        if(pointer.dragboxCoords[1] > pointer.dragboxCoords[3]){
+                            ypos = false;
+                        }
+                        else ypos = true;
+                        switch(true){
+                            case xpos && ypos:
+                                map.mapArray[xmax/XSIZE][ymin/YSIZE].setTexture('roadNegXPosY');
+                                break;
+                            case xpos && !ypos:
+                                map.mapArray[xmax/XSIZE][ymax/YSIZE].setTexture('roadNegXNegY');
+                                break;
+                            case !xpos && ypos:
+                                map.mapArray[xmin/XSIZE][ymin/YSIZE].setTexture('roadPosXPosY');
+                                break;
+                            case !xpos && !ypos:
+                                map.mapArray[xmin/XSIZE][ymax/YSIZE].setTexture('roadPosXNegY');
+                                break;
+                        }
+                    }
+                    else {
+                        var y1;
+                        var x1 = pointer.dragboxCoords[0];
+                        for(y1 = ymin; y1 <= ymax; y1 += YSIZE){
+                            if(map.mapArray[x1/XSIZE][y1/YSIZE].name == "Road"){
+                                if(map.mapArray[(x1 + XSIZE)/XSIZE][y1/YSIZE].name == "Road") var xPos = true;
+                                if(map.mapArray[(x1 - XSIZE)/XSIZE][y1/YSIZE].name == "Road") var xNeg = true;
+                                switch(true){
+                                    case xPos && xNeg:
+                                        map.mapArray[x1/XSIZE][y1/YSIZE].setTexture('roadInt');
+                                        break;
+                                    case xPos && !xNeg:
+                                        map.mapArray[x1/XSIZE][y1/YSIZE].setTexture('roadYPosX');
+                                        break;
+                                    case !xPos && xNeg:
+                                        map.mapArray[x1/XSIZE][y1/YSIZE].setTexture('roadYNegX');
+                                        break;
+                                    default:
+                                    map.mapArray[x1/XSIZE][y1/YSIZE].setTexture('roadY');
+                                }
+                            }
+                            else{
+                                map.mapArray[x1/XSIZE][y1/YSIZE].setTexture('roadY');
+                                map.mapArray[x1/XSIZE][y1/YSIZE].name = "Road";
+                            }
+                            map.mapArray[x1/XSIZE][y1/YSIZE].clearTint();
+                        }
+                        y1 = pointer.dragboxCoords[3];
+                        for(x1 = xmin; x1 <= xmax; x1 += XSIZE){
+                            if(map.mapArray[x1/XSIZE][y1/YSIZE].name == "Road"){
+                                if(map.mapArray[x1/XSIZE][(y1 + YSIZE)/YSIZE].name == "Road") var yPos = true;
+                                if(map.mapArray[x1/XSIZE][(y1 - YSIZE)/YSIZE].name == "Road") var yNeg = true;
+                                switch(true){
+                                    case yPos && yNeg:
+                                        map.mapArray[x1/XSIZE][y1/YSIZE].setTexture('roadInt');
+                                        break;
+                                    case yPos && !yNeg:
+                                        map.mapArray[x1/XSIZE][y1/YSIZE].setTexture('roadXPosY');
+                                        break;
+                                    case !yPos && yNeg:
+                                        map.mapArray[x1/XSIZE][y1/YSIZE].setTexture('roadXNegY');
+                                        break;
+                                    default:
+                                        map.mapArray[x1/XSIZE][y1/YSIZE].setTexture('roadX');
+                                }
+                            }
+                            else{
+                                map.mapArray[x1/XSIZE][y1/YSIZE].setTexture('roadX');
+                                map.mapArray[x1/XSIZE][y1/YSIZE].name = "Road";
+                            }
+                            map.mapArray[x1/XSIZE][y1/YSIZE].clearTint();
+                        }
+
+                        // Road Corners
+                        var xpos, ypos;
+                        if(pointer.dragboxCoords[0] > pointer.dragboxCoords[2]){
+                            xpos = false;
+                        }
+                        else xpos = true;
+                        if(pointer.dragboxCoords[1] > pointer.dragboxCoords[3]){
+                            ypos = false;
+                        }
+                        else ypos = true;
+                        switch(true){
+                            case xpos && ypos:
+                                map.mapArray[xmin/XSIZE][ymax/YSIZE].setTexture('roadPosXNegY');
+                                break;
+                            case xpos && !ypos:
+                                map.mapArray[xmin/XSIZE][ymin/YSIZE].setTexture('roadPosXPosY');
+                                break;
+                            case !xpos && ypos:
+                                map.mapArray[xmax/XSIZE][ymax/YSIZE].setTexture('roadNegXNegY');
+                                break;
+                            case !xpos && !ypos:
+                                map.mapArray[xmax/XSIZE][ymin/YSIZE].setTexture('roadNegXPosY');
+                                break;
+                        }
+                    }
                 }
             }
         });
