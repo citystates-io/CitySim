@@ -42,11 +42,11 @@ class IsoInteractionExample extends Scene {
     this.load.image('roadPosXNegY', 'assets/RoadTurnPosXNegY.png');
     this.load.image('roadNegXPosY', 'assets/RoadTurnNegXPosY.png');
     this.load.image('fireStationS', 'assets/SmallFireStation.png');
-    this.load.image('healthS', 'assets/Clinic.png');
+    this.load.image('healthS', 'assets/ClinicNew.png');
     this.load.image('healthB', 'assets/Hospital.png');
     this.load.image('schoolS', 'assets/School.png');
     this.load.image('schoolB', 'assets/HighSchool.png');
-    this.load.image('policeS', 'assets/PoliceOutpost.png');
+    this.load.image('policeS', 'assets/PoliceOutpostNew.png');
     this.load.image('blue-button', 'assets/GUI/images/blue_button02.png');
     this.load.image('blue-button-selected', 'assets/GUI/images/blue_button05.png');
     this.load.image('grey-button', 'assets/GUI/images/grey_button02.png');
@@ -558,7 +558,7 @@ class IsoInteractionExample extends Scene {
                             this.scene.transitSprite(map.mapArray[pointer.dragboxCoords[2]/XSIZE][pointer.dragboxCoords[3]/YSIZE]);
                         }
                     }
-                    
+
                 }
             }
         });
