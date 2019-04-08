@@ -32,6 +32,10 @@ class IsoInteractionExample extends Scene {
     this.load.image('roadXPosY', 'assets/RoadXPosY.png');
     this.load.image('roadYNegX', 'assets/RoadYNegX.png');
     this.load.image('roadYPosX', 'assets/RoadYPosX.png');
+    this.load.image('roadNegY', 'assets/RoadNegY.png');
+    this.load.image('roadPosY', 'assets/RoadPosY.png');
+    this.load.image('roadNegX', 'assets/RoadNegX.png');
+    this.load.image('roadPosX', 'assets/RoadPosX.png');
     this.load.image('roadInt', 'assets/RoadInt.png');
     this.load.image('roadPosXPosY', 'assets/RoadTurnPosXPosY.png');
     this.load.image('roadNegXNegY', 'assets/RoadTurnNegXNegY.png');
@@ -497,164 +501,64 @@ class IsoInteractionExample extends Scene {
                 }
                 // Road building logic
                 else {
-                    console.log("Start Point:", pointer.dragboxCoords[0]/16,  pointer.dragboxCoords[1]/16)
-                    console.log("End Point:", pointer.dragboxCoords[2]/16,  pointer.dragboxCoords[3]/16)
+                    var x1, y1;
                     if(xdiff > ydiff) {
-                        var x1;
-                        var y1 = pointer.dragboxCoords[1];
-                        for(x1 = xmin; x1 <= xmax; x1 += XSIZE){
-                            if(map.mapArray[x1/XSIZE][y1/YSIZE].name == "Road"){
-                                if(map.mapArray[x1/XSIZE][(y1 + YSIZE)/YSIZE].name == "Road") var yPos = true;
-                                if(map.mapArray[x1/XSIZE][(y1 - YSIZE)/YSIZE].name == "Road") var yNeg = true;
-                                switch(true){
-                                    case yPos && yNeg:
-                                        map.mapArray[x1/XSIZE][y1/YSIZE].setTexture('roadInt');
-                                        break;
-                                    case yPos && !yNeg:
-                                        map.mapArray[x1/XSIZE][y1/YSIZE].setTexture('roadXPosY');
-                                        break;
-                                    case !yPos && yNeg:
-                                        map.mapArray[x1/XSIZE][y1/YSIZE].setTexture('roadXNegY');
-                                        break;
-                                    default:
-                                    map.mapArray[x1/XSIZE][y1/YSIZE].setTexture('roadX');
-                                }
-                            }
-                            else{
-                                map.mapArray[x1/XSIZE][y1/YSIZE].setTexture('roadX');
-                                map.mapArray[x1/XSIZE][y1/YSIZE].name = "Road";
-                            }
-                            map.mapArray[x1/XSIZE][y1/YSIZE].clearTint();
+                        y1 = pointer.dragboxCoords[1];
+                    }
+                    else y1 = pointer.dragboxCoords[3];
+
+                    for(x1 = xmin; x1 <= xmax; x1 += XSIZE){
+                        if(x1 != xmin && x1 != xmax){
+                            map.mapArray[x1/XSIZE][y1/YSIZE].setData({roadPosX: true, roadNegX: true})
                         }
+                        else if(x1 == xmin){
+                            map.mapArray[x1/XSIZE][y1/YSIZE].setData({roadPosX: true})
+                        }
+                        else map.mapArray[x1/XSIZE][y1/YSIZE].setData({roadNegX: true})
+
+                        this.scene.transitSprite(map.mapArray[x1/XSIZE][y1/YSIZE]);
+
+                        map.mapArray[x1/XSIZE][y1/YSIZE].name = "Road";
+                        map.mapArray[x1/XSIZE][y1/YSIZE].clearTint();
+                    }
+
+                    if(xdiff > ydiff) {
                         x1 = pointer.dragboxCoords[2];
-                        for(y1 = ymin; y1 <= ymax; y1 += YSIZE){
-                            if(map.mapArray[x1/XSIZE][y1/YSIZE].name == "Road"){
-                                if(map.mapArray[(x1 + XSIZE)/XSIZE][y1/YSIZE].name == "Road") var xPos = true;
-                                if(map.mapArray[(x1 - XSIZE)/XSIZE][y1/YSIZE].name == "Road") var xNeg = true;
-                                switch(true){
-                                    case xPos && xNeg:
-                                        map.mapArray[x1/XSIZE][y1/YSIZE].setTexture('roadInt');
-                                        break;
-                                    case xPos && !xNeg:
-                                        map.mapArray[x1/XSIZE][y1/YSIZE].setTexture('roadYPosX');
-                                        break;
-                                    case !xPos && xNeg:
-                                        map.mapArray[x1/XSIZE][y1/YSIZE].setTexture('roadYNegX');
-                                        break;
-                                    default:
-                                    map.mapArray[x1/XSIZE][y1/YSIZE].setTexture('roadY');
-                                }
-                            }
-                            else{
-                                map.mapArray[x1/XSIZE][y1/YSIZE].setTexture('roadY');
-                                map.mapArray[x1/XSIZE][y1/YSIZE].name = "Road";
-                            }
-                            map.mapArray[x1/XSIZE][y1/YSIZE].clearTint();
-                        }
+                    }
+                    else x1 = pointer.dragboxCoords[0];
 
-                        // Road Corners
-                        var xpos, ypos;
-                        if(pointer.dragboxCoords[0] > pointer.dragboxCoords[2]){
-                            xpos = false;
+                    for(y1 = ymin; y1 <= ymax; y1 += YSIZE){
+                        if(y1 != ymin && y1 != ymax){
+                            map.mapArray[x1/XSIZE][y1/YSIZE].setData({roadPosY: true, roadNegY: true})
                         }
-                        else xpos = true;
-                        if(pointer.dragboxCoords[1] > pointer.dragboxCoords[3]){
-                            ypos = false;
+                        else if(y1 == ymin){
+                            map.mapArray[x1/XSIZE][y1/YSIZE].setData({roadPosY: true})
                         }
-                        else ypos = true;
-                        switch(true){
-                            case xpos && ypos:
-                                map.mapArray[xmax/XSIZE][ymin/YSIZE].setTexture('roadNegXPosY');
-                                break;
-                            case xpos && !ypos:
-                                map.mapArray[xmax/XSIZE][ymax/YSIZE].setTexture('roadNegXNegY');
-                                break;
-                            case !xpos && ypos:
-                                map.mapArray[xmin/XSIZE][ymin/YSIZE].setTexture('roadPosXPosY');
-                                break;
-                            case !xpos && !ypos:
-                                map.mapArray[xmin/XSIZE][ymax/YSIZE].setTexture('roadPosXNegY');
-                                break;
+                        else map.mapArray[x1/XSIZE][y1/YSIZE].setData({roadNegY: true})
+
+                        this.scene.transitSprite(map.mapArray[x1/XSIZE][y1/YSIZE]);
+
+                        map.mapArray[x1/XSIZE][y1/YSIZE].name = "Road";
+                        map.mapArray[x1/XSIZE][y1/YSIZE].clearTint();
+                    }
+
+                    // Straight road edge cases
+                    var xSame, ySame;
+                    if(pointer.dragboxCoords[1] == pointer.dragboxCoords[3]){
+                        ySame = true;
+                        if(!map.mapArray[pointer.dragboxCoords[2]/XSIZE][pointer.dragboxCoords[3]/YSIZE + 1].getData("roadNegY")){
+                            map.mapArray[pointer.dragboxCoords[2]/XSIZE][pointer.dragboxCoords[3]/YSIZE].setData({roadPosY: false});
+                            this.scene.transitSprite(map.mapArray[pointer.dragboxCoords[2]/XSIZE][pointer.dragboxCoords[3]/YSIZE]);
                         }
                     }
-                    else {
-                        var y1;
-                        var x1 = pointer.dragboxCoords[0];
-                        for(y1 = ymin; y1 <= ymax; y1 += YSIZE){
-                            if(map.mapArray[x1/XSIZE][y1/YSIZE].name == "Road"){
-                                if(map.mapArray[(x1 + XSIZE)/XSIZE][y1/YSIZE].name == "Road") var xPos = true;
-                                if(map.mapArray[(x1 - XSIZE)/XSIZE][y1/YSIZE].name == "Road") var xNeg = true;
-                                switch(true){
-                                    case xPos && xNeg:
-                                        map.mapArray[x1/XSIZE][y1/YSIZE].setTexture('roadInt');
-                                        break;
-                                    case xPos && !xNeg:
-                                        map.mapArray[x1/XSIZE][y1/YSIZE].setTexture('roadYPosX');
-                                        break;
-                                    case !xPos && xNeg:
-                                        map.mapArray[x1/XSIZE][y1/YSIZE].setTexture('roadYNegX');
-                                        break;
-                                    default:
-                                    map.mapArray[x1/XSIZE][y1/YSIZE].setTexture('roadY');
-                                }
-                            }
-                            else{
-                                map.mapArray[x1/XSIZE][y1/YSIZE].setTexture('roadY');
-                                map.mapArray[x1/XSIZE][y1/YSIZE].name = "Road";
-                            }
-                            map.mapArray[x1/XSIZE][y1/YSIZE].clearTint();
-                        }
-                        y1 = pointer.dragboxCoords[3];
-                        for(x1 = xmin; x1 <= xmax; x1 += XSIZE){
-                            if(map.mapArray[x1/XSIZE][y1/YSIZE].name == "Road"){
-                                if(map.mapArray[x1/XSIZE][(y1 + YSIZE)/YSIZE].name == "Road") var yPos = true;
-                                if(map.mapArray[x1/XSIZE][(y1 - YSIZE)/YSIZE].name == "Road") var yNeg = true;
-                                switch(true){
-                                    case yPos && yNeg:
-                                        map.mapArray[x1/XSIZE][y1/YSIZE].setTexture('roadInt');
-                                        break;
-                                    case yPos && !yNeg:
-                                        map.mapArray[x1/XSIZE][y1/YSIZE].setTexture('roadXPosY');
-                                        break;
-                                    case !yPos && yNeg:
-                                        map.mapArray[x1/XSIZE][y1/YSIZE].setTexture('roadXNegY');
-                                        break;
-                                    default:
-                                        map.mapArray[x1/XSIZE][y1/YSIZE].setTexture('roadX');
-                                }
-                            }
-                            else{
-                                map.mapArray[x1/XSIZE][y1/YSIZE].setTexture('roadX');
-                                map.mapArray[x1/XSIZE][y1/YSIZE].name = "Road";
-                            }
-                            map.mapArray[x1/XSIZE][y1/YSIZE].clearTint();
-                        }
-
-                        // Road Corners
-                        var xpos, ypos;
-                        if(pointer.dragboxCoords[0] > pointer.dragboxCoords[2]){
-                            xpos = false;
-                        }
-                        else xpos = true;
-                        if(pointer.dragboxCoords[1] > pointer.dragboxCoords[3]){
-                            ypos = false;
-                        }
-                        else ypos = true;
-                        switch(true){
-                            case xpos && ypos:
-                                map.mapArray[xmin/XSIZE][ymax/YSIZE].setTexture('roadPosXNegY');
-                                break;
-                            case xpos && !ypos:
-                                map.mapArray[xmin/XSIZE][ymin/YSIZE].setTexture('roadPosXPosY');
-                                break;
-                            case !xpos && ypos:
-                                map.mapArray[xmax/XSIZE][ymax/YSIZE].setTexture('roadNegXNegY');
-                                break;
-                            case !xpos && !ypos:
-                                map.mapArray[xmax/XSIZE][ymin/YSIZE].setTexture('roadNegXPosY');
-                                break;
+                    if(pointer.dragboxCoords[0] == pointer.dragboxCoords[2]){
+                        xSame = true;
+                        if(!map.mapArray[pointer.dragboxCoords[2]/XSIZE][pointer.dragboxCoords[3]/YSIZE + 1].getData("roadNegX")){
+                            map.mapArray[pointer.dragboxCoords[2]/XSIZE][pointer.dragboxCoords[3]/YSIZE].setData({roadPosX: false});
+                            this.scene.transitSprite(map.mapArray[pointer.dragboxCoords[2]/XSIZE][pointer.dragboxCoords[3]/YSIZE]);
                         }
                     }
+                    
                 }
             }
         });
@@ -664,6 +568,58 @@ class IsoInteractionExample extends Scene {
   }
   update(time, delta){
       this.controls.update(delta);
+  }
+  transitSprite(tile, posX = tile.getData("roadPosX"), negX = tile.getData("roadNegX"), posY = tile.getData("roadPosY"), negY = tile.getData("roadNegY")){
+    switch(true){
+        case posX && negX && posY && negY:
+            tile.setTexture('roadInt');
+            break;
+        case posX && negX && posY && !negY:
+            tile.setTexture('roadXPosY');
+            break;
+        case posX && negX && !posY && negY:
+            tile.setTexture('roadXNegY');
+            break;
+        case posX && negX && !posY && !negY:
+            tile.setTexture('roadX');
+            break;
+        case posX && !negX && posY && negY:
+            tile.setTexture('roadYPosX');
+            break;
+        case posX && !negX && posY && !negY:
+            tile.setTexture('roadPosXPosY');
+            break;
+        case posX && !negX && !posY && negY:
+            tile.setTexture('roadPosXNegY');
+            break;
+        case posX && !negX && !posY && !negY:
+            tile.setTexture('roadPosX');
+            break;
+        case !posX && negX && posY && negY:
+            tile.setTexture('roadYNegX');
+            break;
+        case !posX && negX && posY && !negY:
+            tile.setTexture('roadNegXPosY');
+            break;
+        case !posX && negX && !posY && negY:
+            tile.setTexture('roadNegXNegY');
+            break;
+        case !posX && negX && !posY && !negY:
+            tile.setTexture('roadNegX');
+            break;
+        case !posX && !negX && posY && negY:
+            tile.setTexture('roadY');
+            break;
+        case !posX && !negX && posY && !negY:
+            tile.setTexture('roadPosY');
+            break;
+        case !posX && !negX && !posY && negY:
+            tile.setTexture('roadNegY');
+            break;
+        case !posX && !negX && !posY && !negY:
+            tile.setTexture('roadInt');
+            break;
+    }
   }
 }
 
