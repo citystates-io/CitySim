@@ -4,6 +4,7 @@ import Map from './map.js';
 import Pointer from './GUIState.js';
 import Zone from './zone.js';
 import Plop from './plop.js';
+import Transit from './transit.js';
 
 var game;
 
@@ -20,8 +21,48 @@ class IsoInteractionExample extends Scene {
                   new Zone('Industrial', 0xc5cc13, 'yellow-button', 2)];
     this.plops = [new Plop('Firestation Small', 'blue-button', 'fireStationS', 0),
                   new Plop('Clinic', 'blue-button', 'healthS', 1),
-                  new Plop('Elementary School', 'blue-button', 'schoolS', 2),
-                  new Plop('Police Outpost', 'blue-button', 'policeS', 3)];
+                  new Plop('High School', 'blue-button', 'schoolB', 2),
+                  new Plop('Elementary School', 'blue-button', 'schoolS', 3),
+                  new Plop('Police Outpost', 'blue-button', 'policeS', 4)];
+    const roadSprites = {
+        Int: 'roadInt',
+        None: 'roadNone',
+        Y: 'roadY',
+        X: 'roadX',
+        NegY: 'roadNegY',
+        PosY: 'roadPosY',
+        NegX: 'roadNegX',
+        PosX: 'roadPosX',
+        YNegX: 'roadYNegX',
+        YPosX: 'roadYPosX',
+        XNegY: 'roadXNegY',
+        XPosY: 'roadXPosY',
+        PosXPosY: 'roadPosXPosY',
+        PosXNegY: 'roadPosXNegY',
+        NegXPosY: 'roadNegXPosY',
+        NegXNegY: 'roadNegXNegY'
+    }
+    const powerSprites = {
+        Int: 'powerInt',
+        None: 'powerNone',
+        Y: 'powerY',
+        X: 'powerX',
+        NegY: 'powerNegY',
+        PosY: 'powerPosY',
+        NegX: 'powerNegX',
+        PosX: 'powerPosX',
+        YNegX: 'powerYNegX',
+        YPosX: 'powerYPosX',
+        XNegY: 'powerXNegY',
+        XPosY: 'powerXPosY',
+        PosXPosY: 'powerPosXPosY',
+        PosXNegY: 'powerPosXNegY',
+        NegXPosY: 'powerNegXPosY',
+        NegXNegY: 'powerNegXNegY'
+
+    }
+    this.transits = [new Transit('Road', roadSprites, 'grey-button', 0),
+                     new Transit('Power', powerSprites, 'yellow-button', 1)];
   }
 
   preload() {
@@ -37,6 +78,7 @@ class IsoInteractionExample extends Scene {
     this.load.image('roadNegX', 'assets/RoadNegX.png');
     this.load.image('roadPosX', 'assets/RoadPosX.png');
     this.load.image('roadInt', 'assets/RoadInt.png');
+    this.load.image('roadNone', 'assets/RoadNone.png');
     this.load.image('roadPosXPosY', 'assets/RoadTurnPosXPosY.png');
     this.load.image('roadNegXNegY', 'assets/RoadTurnNegXNegY.png');
     this.load.image('roadPosXNegY', 'assets/RoadTurnPosXNegY.png');
@@ -81,8 +123,9 @@ class IsoInteractionExample extends Scene {
     for(var x = 0; x < this.plops.length; x++){
         pointer.addState(this.plops[x].name, 'PLOP');
     }
-    pointer.addState('Road', 'TRANSIT');
-
+    for(var x = 0; x < this.transits.length; x++){
+        pointer.addState(this.transits[x].name, 'TRANSIT');
+    }
 
     var zoneButton = this.add.image(50, 110, 'grey-button').setInteractive();
     this.zoneButtons = new Array();
@@ -195,6 +238,7 @@ class IsoInteractionExample extends Scene {
         this.plopButtonTexts[x] = this.add.text(PLOP_BUTTONS_OFFSET_X - 75, PLOP_BUTTONS_OFFSET_Y + x*45, this.plops[x].name, { fill: '#000' });
         this.plopUIContainer.add([this.plopButtons[x], this.plopButtonTexts[x]]);
     }
+    this.plopUIContainer.depth = 1000;
     // zone button events
     let zones = this.zones;
     let zoneButtons = this.zoneButtons;
@@ -236,7 +280,7 @@ class IsoInteractionExample extends Scene {
     this.plopUIContainer.active = false;
     this.uiContainer.add([zoneButton, roadButton, plopButton, zoneText, roadText, placeTileText, this.zoneUIContainer]);
 
-    this.iso.projector.origin.setTo(0.5, 0.25);
+    this.iso.projector.origin.setTo(0.5, 0);
 
     // adjustable window size
     window.addEventListener('resize', () => {
@@ -418,14 +462,11 @@ class IsoInteractionExample extends Scene {
 
         map.mapArray[xx/XSIZE][yy/YSIZE].on('pointerout', function() {
             if(pointer.state.mode == 'PLOP'){
-                if(!pointer.placed && (this.name == "Terrain" || this.name == "Zone" || this.name == "Building")){
+                if(!pointer.placed && (this.name == "Terrain" || this.name == "Zone" || this.name == "Building" || this.name == "Road")){
                     if(this.getData('texture')){
                         this.setTexture(this.getData('texture'));
                     }
                     else this.setTexture('tile');
-                }
-                else if(!pointer.placed && this.name == "Road"){
-                    this.setTexture('roadY');
                 }
                 pointer.placed = false;
                 this.alpha = 1;
@@ -516,7 +557,7 @@ class IsoInteractionExample extends Scene {
                         }
                         else map.mapArray[x1/XSIZE][y1/YSIZE].setData({roadNegX: true})
 
-                        this.scene.transitSprite(map.mapArray[x1/XSIZE][y1/YSIZE]);
+                        this.scene.transits[0].setTexture(map.mapArray[x1/XSIZE][y1/YSIZE]);
 
                         map.mapArray[x1/XSIZE][y1/YSIZE].name = "Road";
                         map.mapArray[x1/XSIZE][y1/YSIZE].clearTint();
@@ -536,7 +577,7 @@ class IsoInteractionExample extends Scene {
                         }
                         else map.mapArray[x1/XSIZE][y1/YSIZE].setData({roadNegY: true})
 
-                        this.scene.transitSprite(map.mapArray[x1/XSIZE][y1/YSIZE]);
+                        this.scene.transits[0].setTexture(map.mapArray[x1/XSIZE][y1/YSIZE]);
 
                         map.mapArray[x1/XSIZE][y1/YSIZE].name = "Road";
                         map.mapArray[x1/XSIZE][y1/YSIZE].clearTint();
@@ -548,17 +589,16 @@ class IsoInteractionExample extends Scene {
                         ySame = true;
                         if(!map.mapArray[pointer.dragboxCoords[2]/XSIZE][pointer.dragboxCoords[3]/YSIZE + 1].getData("roadNegY")){
                             map.mapArray[pointer.dragboxCoords[2]/XSIZE][pointer.dragboxCoords[3]/YSIZE].setData({roadPosY: false});
-                            this.scene.transitSprite(map.mapArray[pointer.dragboxCoords[2]/XSIZE][pointer.dragboxCoords[3]/YSIZE]);
+                            this.scene.transits[0].setTexture(map.mapArray[pointer.dragboxCoords[2]/XSIZE][pointer.dragboxCoords[3]/YSIZE]);
                         }
                     }
                     if(pointer.dragboxCoords[0] == pointer.dragboxCoords[2]){
                         xSame = true;
                         if(!map.mapArray[pointer.dragboxCoords[2]/XSIZE][pointer.dragboxCoords[3]/YSIZE + 1].getData("roadNegX")){
                             map.mapArray[pointer.dragboxCoords[2]/XSIZE][pointer.dragboxCoords[3]/YSIZE].setData({roadPosX: false});
-                            this.scene.transitSprite(map.mapArray[pointer.dragboxCoords[2]/XSIZE][pointer.dragboxCoords[3]/YSIZE]);
+                            this.scene.transits[0].setTexture(map.mapArray[pointer.dragboxCoords[2]/XSIZE][pointer.dragboxCoords[3]/YSIZE]);
                         }
                     }
-
                 }
             }
         });
@@ -568,58 +608,6 @@ class IsoInteractionExample extends Scene {
   }
   update(time, delta){
       this.controls.update(delta);
-  }
-  transitSprite(tile, posX = tile.getData("roadPosX"), negX = tile.getData("roadNegX"), posY = tile.getData("roadPosY"), negY = tile.getData("roadNegY")){
-    switch(true){
-        case posX && negX && posY && negY:
-            tile.setTexture('roadInt');
-            break;
-        case posX && negX && posY && !negY:
-            tile.setTexture('roadXPosY');
-            break;
-        case posX && negX && !posY && negY:
-            tile.setTexture('roadXNegY');
-            break;
-        case posX && negX && !posY && !negY:
-            tile.setTexture('roadX');
-            break;
-        case posX && !negX && posY && negY:
-            tile.setTexture('roadYPosX');
-            break;
-        case posX && !negX && posY && !negY:
-            tile.setTexture('roadPosXPosY');
-            break;
-        case posX && !negX && !posY && negY:
-            tile.setTexture('roadPosXNegY');
-            break;
-        case posX && !negX && !posY && !negY:
-            tile.setTexture('roadPosX');
-            break;
-        case !posX && negX && posY && negY:
-            tile.setTexture('roadYNegX');
-            break;
-        case !posX && negX && posY && !negY:
-            tile.setTexture('roadNegXPosY');
-            break;
-        case !posX && negX && !posY && negY:
-            tile.setTexture('roadNegXNegY');
-            break;
-        case !posX && negX && !posY && !negY:
-            tile.setTexture('roadNegX');
-            break;
-        case !posX && !negX && posY && negY:
-            tile.setTexture('roadY');
-            break;
-        case !posX && !negX && posY && !negY:
-            tile.setTexture('roadPosY');
-            break;
-        case !posX && !negX && !posY && negY:
-            tile.setTexture('roadNegY');
-            break;
-        case !posX && !negX && !posY && !negY:
-            tile.setTexture('roadInt');
-            break;
-    }
   }
 }
 
