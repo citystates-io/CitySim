@@ -5,6 +5,7 @@ import Pointer from './GUIState.js';
 import Zone from './zone.js';
 import Plop from './plop.js';
 import Transit from './transit.js';
+import AssetManager from './AssetManager.js';
 
 var game;
 
@@ -16,6 +17,8 @@ class IsoInteractionExample extends Scene {
     };
 
     super(sceneConfig);
+
+    this.assetManager = new AssetManager();
     this.zones = [new Zone('Residential', 0x36ed36, 'green-button', 0),
                   new Zone('Commercial', 0x4286f4, 'blue-button', 1),
                   new Zone('Industrial', 0xc5cc13, 'yellow-button', 2)];
@@ -66,6 +69,8 @@ class IsoInteractionExample extends Scene {
   }
 
   preload() {
+    //this.assetManager.loadAssets(this);
+
     this.load.image('tile', 'assets/TerrainTest.png');
     this.load.image('roadY', 'assets/RoadY.png');
     this.load.image('roadX', 'assets/RoadX.png');
@@ -97,6 +102,7 @@ class IsoInteractionExample extends Scene {
     this.load.image('yellow-button-selected', 'assets/GUI/images/yellow_button05.png');
     this.load.image('green-button', 'assets/GUI/images/green_button02.png');
     this.load.image('green-button-selected', 'assets/GUI/images/green_button05.png');
+
     this.load.scenePlugin({
       key: 'IsoPlugin',
       url: IsoPlugin,
