@@ -1,3 +1,5 @@
+import roadsRegularAssets from '../../assets/assetLists/roadsRegular'
+
 let XSIZE = 16;
 let YSIZE = 16;
 
@@ -26,34 +28,28 @@ class SubTileAsset extends Asset{
 }
 
 class AssetGroup{
-    constructor(name, ID, assets){
+    constructor(name, assets){
         this.name = name;
-        this.ID = ID;
         this.assets = assets;
     }
 }
 
 class TransitGroup extends AssetGroup{
-    constructor(name, ID, assets){
-        super(name, ID, assets);
+    constructor(name, assets){
+        super(name, assets);
     }
 }
 
 export default class AssetManager{
     constructor(){
-
+    // Create all assets here
+    const roadTilesRegular = new TransitGroup("roadsRegular", roadsRegularAssets)
     }
     // loads asset JSON data into scene
-    loadAssets(scene){
-        scene.load.on('filecomplete-json-assetData', function(key, type, data){
-            console.log(data);
-            for(var x = 0; x < data.length; x++){
-                this.scene.load.image(data[x].name, 'assets/' + data[x].fileName);
-            }
-        });
-        scene.load.json({
-            key: 'assetData',
-            url: 'assets/assetGroups.json'
-        });
+    getAssetMap(scene){
+        return [
+            ...roadsRegularAssets.assets,
+
+        ]
     }
 }
